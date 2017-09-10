@@ -71,12 +71,19 @@ xcuserdata
 
 # Visual Studio
 *.sdf
+/.vs
+.vs
 *.opensdf
 *.suo
 *.pdb
 *.ilk
 *.aps
-**.VC.db
+*.ncb
+*.opendb
+*.cachefile
+*.VC.db
+*.VC.VC.opendb
+opdracht1/*.VC.db
 ipch/
 
 # Eclipse
