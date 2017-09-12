@@ -3,26 +3,23 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 	ofSetWindowShape(800, 600);
-	Ball myball;
+	for (int i = 0; i<NBALLS; i++) {
+		myBall[i].setup();
+	}
 }
 
 //--------------------------------------------------------------
 void ofApp::update() {
-	if (x+radius/2 >= ofGetWidth() || x-radius/2 <= 0) {
-		speedx = -speedx;
+	for (int i = 0; i<NBALLS; i++) {
+		myBall[i].update();
 	}
-	if (y+radius/2 >= ofGetHeight() || y-radius/2 <= 0) {
-		speedy = -speedy;
-	}
-
-	x += speedx;
-	y += speedy;
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-		ofSetColor(ofColor::red);
-		ofDrawCircle(x, y, radius);
+	for (int i = 0; i<NBALLS; i++) {
+		myBall[i].draw();
+	}
 }
 
 //--------------------------------------------------------------

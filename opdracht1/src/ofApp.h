@@ -4,11 +4,10 @@
 #include "Ball.h"
 #define NBALLS 10
 
-Ball myBall[NBALLS];
-
 class ofApp : public ofBaseApp{
 
 	public:
+		Ball myBall[NBALLS];
 		void setup();
 		void update();
 		void draw();
