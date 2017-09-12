@@ -4,14 +4,21 @@ Ball::Ball()
 {
 }
 
-void Ball::setup() {
+void Ball::setup(int r, float sX, float sY, ofColor c) {
 	x = ofRandom(0, ofGetWidth());
 	y = ofRandom(0, ofGetHeight());
 
 	speedx = ofRandom(-2, 2);
 	speedy = ofRandom(-2, 2);
 	radius = 20;
-	color.set(ofRandom(255), ofRandom(255), ofRandom(255));
+	if (r)
+		radius = r;
+	if (sX)
+		speedx = sX;
+	if (sY)
+		speedy = sY;
+
+	color = c;
 }
 
 void Ball::update() {
@@ -27,7 +34,7 @@ void Ball::update() {
 }
 
 void Ball::draw() {
-	ofSetColor(ofColor::red);
+	ofSetColor(color);
 	ofDrawCircle(x, y, radius);
 }
 
