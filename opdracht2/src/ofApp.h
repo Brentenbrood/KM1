@@ -31,5 +31,7 @@ class ofApp : public ofBaseApp{
 		ofParameter<float> speedX;
 		ofParameter<float> speedY;
 		ofParameter<ofColor> color;
+
+		bool toggle;
 		
 };

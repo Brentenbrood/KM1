@@ -33,7 +33,15 @@ void ofApp::keyPressed(int key){
 		
 		ofLog() << "ball created" << endl;
 	}
-	else {
+	else if (key == 'g') {
+		if (!toggle) {
+			gui.minimizeAll();
+			toggle = true;
+		}
+		else {
+			gui.maximizeAll();
+			toggle = false;
+		}
 		ofLog() << "key pressed" << endl;
 	}
 }
