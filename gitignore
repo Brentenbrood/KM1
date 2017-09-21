@@ -96,7 +96,6 @@ Desktop.ini
 *.user
 *.userosscache
 *.sln.docstates
-*.vcxproj
 *.vcxproj.filters
 
 icon.rc
