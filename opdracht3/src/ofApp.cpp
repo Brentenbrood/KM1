@@ -3,20 +3,32 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 	ofAddListener(arduino.EInitialized, this, &ofApp::setupArduino);
-	arduino.connect("COM4");
+	arduino.connect("COM3");
 	arduino.sendFirmwareVersionRequest();
 	value = "analog pin:";
 	dvalue = "digital pin:";
+
+	gui.setup("Instellingen", "settings.xml");
+	gui.add(radius.set("Radius", 20, 0, 40));
+	gui.add(speedX.set("speedX", 1.0, -2.0, 2.0));
+	gui.add(speedY.set("speedY", 1.0, -2.0, 2.0));
+	gui.add(color.set("color", ofColor::black, 0, 200));
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
 	arduino.update();
+	for (int i = 0; i<balls.size(); i++) {
+		balls[i].update();
+	}
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-
+	for (int i = 0; i<balls.size(); i++) {
+		balls[i].draw();
+	}
+	gui.draw();
 }
 
 //--------------------------------------------------------------
@@ -43,9 +55,31 @@ void ofApp::setupArduino(const int& version)
 }
 
 void ofApp::analogPinChanged(const int& pin) {
-	ofLog() << "analog pin: " + ofToString(pin) + " = " + ofToString(arduino.getAnalog(pin));
+	if (pin == 0) {
+		if (arduino.getAnalog(pin) >= 510 && arduino.getAnalog(pin) <= 514) {
+			//
+		}
+		else {
+			radius = arduino.getAnalog(pin)/20;
+		}
+	}
+	if (pin == 1) {
+		if (arduino.getAnalog(pin) >= 510 && arduino.getAnalog(pin) <= 514) {
+			//
+		}
+	}
+	//ofLog() << "analog pin: " + ofToString(pin) + " = " + ofToString(arduino.getAnalog(pin));
 }
 void ofApp::digitalPinChanged(const int& pin) {
+	if (pin == 8) {
+		if (!arduino.getDigital(8)) {
+			Ball myBall;
+			myBall.setup(radius, speedX, speedY, color);
+			balls.push_back(myBall);
+
+			ofLog() << "ball created" << endl;
+		}
+	}
 	ofLog() << "digital pin: " + ofToString(pin) + " = " + ofToString(arduino.getDigital(pin));
 }
 

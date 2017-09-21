@@ -1,6 +1,9 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxGui.h"
+#include "Ball.h"
+#include <vector>
 
 class ofApp : public ofBaseApp{
 
@@ -11,6 +14,16 @@ class ofApp : public ofBaseApp{
 
 		string value;
 		string dvalue;
+
+		std::vector<Ball> balls;
+
+		ofxPanel gui;
+		ofParameter<int> radius;
+		ofParameter<float> speedX;
+		ofParameter<float> speedY;
+		ofParameter<ofColor> color;
+
+		bool toggle;
 
 		void keyPressed(int key);
 		void keyReleased(int key);
